@@ -51,10 +51,11 @@ You can obtain artifacts to help you debug {% data variables.product.prodname_co
 
 ```yaml
 - name: Initialize CodeQL
-  uses: github/codeql-action/init@v1
+  uses: {% data reusables.actions.action-codeql-action-init %}
   with:
     debug: true
 ```
+
 The debug artifacts will be uploaded to the workflow run as an artifact named `debug-artifacts`. The data contains the {% data variables.product.prodname_codeql %} logs, {% data variables.product.prodname_codeql %} database(s), and any SARIF file(s) produced by the workflow. 
 
 These artifacts will help you debug problems with {% data variables.product.prodname_codeql %} code scanning. If you contact GitHub support, they might ask for this data.
@@ -86,7 +87,7 @@ If an automatic build of code for a compiled language within your project fails,
       steps:
       ...
         - name: Initialize {% data variables.product.prodname_codeql %}
-          uses: github/codeql-action/init@v1
+          uses: {% data reusables.actions.action-codeql-action-init %}
           with:
             languages: {% raw %}${{ matrix.language }}{% endraw %}
   ```
@@ -151,7 +152,7 @@ You may be able to understand why some source files haven't been analyzed by ins
 
 ```yaml
 - name: Initialize CodeQL
-  uses: github/codeql-action/init@v1
+  uses: {% data reusables.actions.action-codeql-action-init %}
   with:
     debug: true
 ```
@@ -159,6 +160,11 @@ You may be able to understand why some source files haven't been analyzed by ins
 This uploads the database as an actions artifact that you can download to your local machine. For more information, see "[Storing workflow artifacts](/actions/guides/storing-workflow-data-as-artifacts)."
 
 The artifact will contain an archived copy of the source files scanned by {% data variables.product.prodname_codeql %} called _src.zip_. If you compare the source code files in the repository and the files in _src.zip_, you can see which types of file are missing. Once you know what types of file are not being analyzed, it is easier to understand how you may need to change the workflow for {% data variables.product.prodname_codeql %} analysis.
+
+## Alerts found in generated code
+
+{% data reusables.code-scanning.alerts-found-in-generated-code %}
+
 
 ## Extraction errors in the database
 
@@ -190,11 +196,9 @@ The default {% data variables.product.prodname_codeql_workflow %} uses a build m
 
 Analysis time is typically proportional to the amount of code being analyzed. You can reduce the analysis time by reducing the amount of code being analyzed at once, for example, by excluding test code, or breaking analysis into multiple workflows that analyze only a subset of your code at a time.
 
-For compiled languages like Java, C, C++, and C#, {% data variables.product.prodname_codeql %} analyzes all of the code which was built during the workflow run. To limit the amount of code being analyzed, build only the code which you wish to analyze by specifying your own build steps in a `run` block. You can combine specifying your own build steps with using the `paths` or `paths-ignore` filters on the `pull_request` and `push` events to ensure that your workflow only runs when specific code is changed. For more information, see "[Workflow syntax for {% data variables.product.prodname_actions %}](/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpull_request_targetpathspaths-ignore)."
+{% data reusables.code-scanning.alerts-found-in-generated-code %}
 
-For languages like Go, JavaScript, Python, and TypeScript, that {% data variables.product.prodname_codeql %} analyzes without compiling the source code, you can specify additional configuration options to limit the amount of code to analyze. For more information, see "[Specifying directories to scan](/code-security/secure-coding/configuring-code-scanning#specifying-directories-to-scan)."
-
-If you split your analysis into multiple workflows as described above, we still recommend that you have at least one workflow which runs on a `schedule` which analyzes all of the code in your repository. Because {% data variables.product.prodname_codeql %} analyzes data flows between components, some complex security behaviors may only be detected on a complete build. 
+If you split your analysis into multiple workflows as described above, we still recommend that you have at least one workflow which runs on a `schedule` which analyzes all of the code in your repository. Because {% data variables.product.prodname_codeql %} analyzes data flows between components, some complex security behaviors may only be detected on a complete build.
 
 ### Run only during a `schedule` event
 
@@ -294,11 +298,11 @@ The revised `steps` section of the workflow will look like this:
 ```yaml
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: {% data reusables.actions.action-checkout %}
 
       # Initializes the {% data variables.product.prodname_codeql %} tools for scanning.
       - name: Initialize {% data variables.product.prodname_codeql %}
-        uses: github/codeql-action/init@v1
+        uses: {% data reusables.actions.action-codeql-action-init %}
 
       ...
 ```

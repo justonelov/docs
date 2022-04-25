@@ -31,7 +31,7 @@ shortTitle: Políticas de configurações de segurança
 
 ## Exigir autenticação de dois fatores para organizações na sua empresa
 
-Os proprietários corporativos podem exigir que integrantes da organização, gerentes de cobrança e colaboradores externos em todas as organizações pertencentes a uma empresa usem autenticação de dois fatores para proteger suas contas pessoais.
+Enterprise owners can require that organization members, billing managers, and outside collaborators in all organizations owned by an enterprise use two-factor authentication to secure their user accounts.
 
 Antes de poder exigir a autenticação 2FA para todas as organizações pertencentes à sua empresa, você deve habilitar a autenticação de dois fatores para a sua própria conta. Para obter mais informações, consulte "[Proteger sua conta com autenticação de dois fatores (2FA)](/articles/securing-your-account-with-two-factor-authentication-2fa/)".
 
@@ -39,9 +39,9 @@ Antes de poder exigir a autenticação 2FA para todas as organizações pertence
 
 **Avisos:**
 
-- Se você exigir autenticação de dois fatores para a sua empresa, os integrantes, colaboradores externos e gerentes de cobrança (incluindo contas bot) em todas as organizações pertencentes à sua empresa que não utilizem 2FA serão removidos da organização e perderão acesso aos repositórios dela. Eles também perderão acesso às bifurcações dos repositórios privados da organização. Se a autenticação de dois fatores for habilitada para a conta pessoal deles em até três meses após a remoção da organização, será possível restabelecer as configurações e os privilégios de acesso deles. Para obter mais informações, consulte "[Restabelecer ex-integrantes da organização](/articles/reinstating-a-former-member-of-your-organization)".
-- Qualquer proprietário da organização, integrante, gerente de cobrança ou colaborador externo em qualquer das organizações pertencentes à sua empresa que desabilite a 2FA para a conta pessoal dele depois que você tiver habilitado a autenticação de dois fatores obrigatória será removido automaticamente da organização.
-- Se você for o único proprietário de uma empresa que exige autenticação de dois fatores, não poderá desabilitar 2FA para sua conta pessoal sem desabilitar a autenticação de dois fatores obrigatória para a empresa.
+- Se você exigir autenticação de dois fatores para a sua empresa, os integrantes, colaboradores externos e gerentes de cobrança (incluindo contas bot) em todas as organizações pertencentes à sua empresa que não utilizem 2FA serão removidos da organização e perderão acesso aos repositórios dela. Eles também perderão acesso às bifurcações dos repositórios privados da organização. You can reinstate their access privileges and settings if they enable two-factor authentication for their account within three months of their removal from your organization. Para obter mais informações, consulte "[Restabelecer ex-integrantes da organização](/articles/reinstating-a-former-member-of-your-organization)".
+- Any organization owner, member, billing manager, or outside collaborator in any of the organizations owned by your enterprise who disables 2FA for their account after you've enabled required two-factor authentication will automatically be removed from the organization.
+- If you're the sole owner of a enterprise that requires two-factor authentication, you won't be able to disable 2FA for your user account without disabling required two-factor authentication for the enterprise.
 
 {% endwarning %}
 
@@ -67,7 +67,7 @@ Você pode restringir o tráfego de rede para a sua empresa em {% data variables
 
 {% elsif ghec %}
 
-Enterprise owners can restrict access to private assets owned by organizations in an enterprise by configuring an allow list for specific IP addresses. {% data reusables.identity-and-permissions.ip-allow-lists-example-and-restrictions %}
+Os proprietários de empresas podem restringir o acesso a ativos privados pertencentes a organizações em uma empresa, configurando uma lista de permissão de endereços IP específicos. {% data reusables.identity-and-permissions.ip-allow-lists-example-and-restrictions %}
 
 {% data reusables.identity-and-permissions.ip-allow-lists-cidr-notation %}
 
@@ -130,7 +130,7 @@ Você pode usar as autoridades de certificados SSH (CA) para permitir que os int
 
 ### Adicionar uma autoridade certificada de SSH
 
-If you require SSH certificates for your enterprise, enterprise members should use a special URL for Git operations over SSH. Para obter mais informações, consulte "[Sobre autoridades certificadas SSH](/organizations/managing-git-access-to-your-organizations-repositories/about-ssh-certificate-authorities#about-ssh-urls-with-ssh-certificates)".
+Se você precisar de certificados SSH para sua empresa, os integrantes da empresa deverão usar um URL especial para operações do Git por meio do SSH. Para obter mais informações, consulte "[Sobre autoridades certificadas SSH](/organizations/managing-git-access-to-your-organizations-repositories/about-ssh-certificate-authorities#about-ssh-urls-with-ssh-certificates)".
 
 {% data reusables.enterprise-accounts.access-enterprise %}
 {% data reusables.enterprise-accounts.settings-tab %}
